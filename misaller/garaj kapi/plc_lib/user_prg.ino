@@ -1,58 +1,112 @@
 void user_prg(){
-  mem2 = cikanKenar(&input1, &mem3);
+  
+  //ADIMLAR
+  DEVRE();
+  YUKLE(input1);
+  CIKAN(&mem3);
+  SAKLA(&mem2);
+  
+  DEVRE();
+  YUKLE(mem2);
+  ESMI(mem1, 0);
+  ESITLE(&mem1, 1);
+  SIL(&mem2);
+  
+  DEVRE();
+  YUKLE(HIGH);
+  ESMI(mem1, 1);
+  ZAMANLA(&tmr1, 30000);
+  YUKLE(tmr1.out);
+  VEYA(mem2);
+  VEB();
+  ESITLE(&mem1, 5);
+  SIL(&mem2);
+  
+  DEVRE();
+  YUKLE(mem2);
+  ESMI(mem1,2);
+  ESITLE(&mem1, 5);
+  SIL(&mem2);
+  
+  DEVRE();
+  YUKLE(HIGH);
+  ESMI(mem1, 3);
+  ZAMANLA(&tmr2, 30000);
+  YUKLE(tmr2.out);
+  VEYA(mem2);
+  VEB();
+  ESITLE(&mem1, 0);
+  SIL(&mem2);
 
-  if (mem2 && (mem1 == 0)){
-    mem1 = 1;
-    mem2 = LOW;
-  }
+  DEVRE();
+  YUKLE(mem2);
+  ESMI(mem1,4);
+  ESITLE(&mem1, 1);
+  SIL(&mem2);
   
-  if ((mem2 || gecikme((mem1 == 1), &timer1, 30000)) && (mem1 == 1)){
-    mem1 = 5;
-    mem2 = LOW;
-  }
+  DEVRE();
+  YUKLE(mem2);
+  ESMI(mem1,5);
+  ESITLE(&mem1, 3);
+  SIL(&mem2);
   
-  if (mem2 && (mem1 == 2)){
-    mem1 = 5;
-    mem2 = LOW;
-  }
+  DEVRE();
+  YUKLE(input3);
+  ESMI(mem1,1);
+  ESITLE(&mem1, 2);
   
-  if ((mem2 || gecikme((mem1 == 3), &timer2, 30000)) && (mem1 == 3)){
-    mem1 = 0;
-    mem2 = LOW;
-  }
+  DEVRE();
+  YUKLE(!input4);
+  ESMI(mem1,2);
+  ZAMANLA(&tmr3, 10000);
+  VE(tmr3.out);
+  ESITLE(&mem1, 3);
   
-  if (mem2 && (mem1 == 4)){
-    mem1 = 1;
-    mem2 = LOW;
-  }
+  DEVRE();
+  YUKLE(input2);
+  ESMI(mem1,3);
+  ESITLE(&mem1, 4);
   
-  if (mem2 && (mem1 == 5)){
-    mem1 = 3;
-    mem2 = LOW;
-  }
+  DEVRE();
+  YUKLE(input4);
+  ESMI(mem1,3);
+  ESITLE(&mem1, 1);
   
-  if (input3 && (mem1 == 1)){
-    mem1 = 2;
-  }
+
+  //AKTİVASYONLAR
+  DEVRE();
+  YUKLE(HIGH);
+  ESMI(mem1, 1);
+  ZAMANLA(&tmr4, 3000);
+  VE(tmr4.out);
+  SAKLA(&output1);
+
+  DEVRE();
+  YUKLE(HIGH);
+  ESMI(mem1, 3);
+  ZAMANLA(&tmr5, 3000);
+  VE(tmr5.out);
+  SAKLA(&output2);
   
-  if (gecikme(!input4 && (mem1 == 2), &timer3, 10000)){
-    mem1 = 3;
-  }
+  DEVRE();
+  YUKLE(HIGH);
+  ESMI(mem1, 1);
+  YUKLE(HIGH);
+  ESMI(mem1, 2);
+  VEYAB();
+  YUKLE(HIGH);
+  ESMI(mem1, 3);
+  VEYAB();
+  VED(mem4);
+  ZAMANLA(&tmr6, 500);
+  VE(tmr6.out);
+  SAKLA(&output3);
   
-  if (input2 && (mem1 == 3)){
-    mem1 = 4;
-  }
-  
-  if (input4 && (mem1 == 3)){
-    mem1 = 1;
-  }
-  
-  output1 = gecikme((mem1 == 1), &timer4, 3000);
-  
-  output2 = gecikme((mem1 == 3), &timer5, 3000);
-  
-  output3 = gecikme(((mem1 == 1 || mem1 == 2 || mem1 == 3) && !mem4), &timer6, 500);
-  mem4 = gecikme(output3, &timer7, 500);
+  DEVRE();
+  YUKLE(output3);
+  ZAMANLA(&tmr7, 500);
+  VE(tmr7.out);
+  SAKLA(&mem4);
 
 }
 
